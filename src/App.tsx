@@ -21,6 +21,9 @@ function App() {
         <Route path="/form" element={<PizzaForm />} />
         <Route path="/pizza" element={<Pizza />} />
       </Routes>
+      <div>
+        <Link to="/form">DUMMY LINK TO PIZZA</Link>
+      </div>
 
       <div>
         <a href="https://vitejs.dev" target="_blank">
