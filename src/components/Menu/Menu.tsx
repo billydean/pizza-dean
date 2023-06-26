@@ -1,10 +1,6 @@
-function Menu () {
-    
-    return (
-        <>
-         MENU COMPONENT
-        </>
-    )
+import "./Menu.scss";
+function Menu() {
+  return <>MENU COMPONENT</>;
 }
 
 export default Menu;

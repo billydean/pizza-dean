@@ -1,10 +1,6 @@
-function PizzaForm () {
-    
-    return (
-        <>
-         FORM COMPONENT
-        </>
-    )
+import "./PizzaForm.scss";
+function PizzaForm() {
+  return <>FORM COMPONENT</>;
 }
 
 export default PizzaForm;
