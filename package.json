@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "lint-staged",
     "preview": "vite preview",
     "prepare": "husky install"
   },
@@ -19,6 +19,8 @@
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
     "axios": "^1.4.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-react-app": "^7.0.1",
     "lint-staged": "^13.2.2",
     "prettier": "^2.8.8",
     "react": "^18.2.0",
