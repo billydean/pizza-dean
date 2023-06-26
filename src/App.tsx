@@ -3,7 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.scss";
 
-import { Route } from "react-router-dom";
+import { Route, Routes, Link } from "react-router-dom";
 
 import Menu from "./components/Menu/Menu";
 import Splash from "./components/Splash/Splash";
@@ -16,18 +16,12 @@ function App() {
   return (
     <>
       <Menu />
-      {/* Splash */}
-      <Route>
-        <Splash />
-      </Route>
-      {/* Pizza Form */}
-      <Route>
-        <PizzaForm />
-      </Route>
-      {/* Pizza Result */}
-      <Route>
-        <Pizza />
-      </Route>
+      <Routes>
+        <Route path="/" element={<Splash />} />
+        <Route path="/form" element={<PizzaForm />} />
+        <Route path="/pizza" element={<Pizza />} />
+      </Routes>
+
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
