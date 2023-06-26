@@ -6,6 +6,9 @@ import "./App.scss";
 import { Route } from "react-router-dom";
 
 import Menu from "./components/Menu/Menu";
+import Splash from "./components/Splash/Splash";
+import PizzaForm from "./components/PizzaForm/PizzaForm";
+import Pizza from "./components/Pizza/Pizza";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -13,6 +16,18 @@ function App() {
   return (
     <>
       <Menu />
+      {/* Splash */}
+      <Route>
+        <Splash />
+      </Route>
+      {/* Pizza Form */}
+      <Route>
+        <PizzaForm />
+      </Route>
+      {/* Pizza Result */}
+      <Route>
+        <Pizza />
+      </Route>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
