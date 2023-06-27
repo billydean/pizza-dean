@@ -1,6 +1,12 @@
 import "./PizzaForm.scss";
 import { useNavigate } from "react-router-dom";
-import type { FormValuesType } from "../../../types";
+import type {
+  PizzaValues,
+  UpdateFunction,
+  StageFunction,
+  Errors,
+} from "../../../types";
+import { ChangeEvent } from "react";
 
 // NOTE for link to pizza product when form done
 // <Link to="../pizza"></Link>
@@ -8,22 +14,27 @@ import type { FormValuesType } from "../../../types";
 // <Link to=".."></Link>
 
 function PizzaForm(props: {
-  values: FormValuesType;
-  change;
-  submit;
+  values: PizzaValues;
+  change: UpdateFunction;
+  submit: StageFunction;
   disabled: boolean;
-  errors;
+  errors: Errors;
 }) {
   const cost = "TBD haha";
   const navigate = useNavigate();
   const { values, change, submit, disabled, errors } = props;
-  const update = (evt) => {
-    const { name, value, type, checked } = evt.target;
+  const update = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = event.target;
     const useValue = type === "checkbox" ? checked : value;
     change(name, useValue);
   };
-  const onSubmit = (evt) => {
-    evt.preventDefault();
+  const updateSelect = (event: ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = event.target;
+    change(name, value);
+  };
+
+  const onSubmit = (event: ChangeEvent<HTMLFormElement>) => {
+    event.preventDefault();
     submit();
     navigate("/pizza");
   };
@@ -33,7 +44,7 @@ function PizzaForm(props: {
       <label className="">
         Choice of Size
         <p>Required</p>
-        <select id="size-dropdown" name="size" onChange={update}>
+        <select id="size-dropdown" name="size" onChange={updateSelect}>
           <option value="">--Size Options--</option>
           <option value="11">Medium - 11"</option>
           <option value="14">Large - 14"</option>
@@ -43,7 +54,7 @@ function PizzaForm(props: {
       <label>
         Choice of Sauce
         <p>Required</p>
-        <select name="sauce" value={values.sauce} onChange={update}>
+        <select name="sauce" value={values.sauce} onChange={updateSelect}>
           <option value="">--Sauce Options--</option>
           <option value="marinara">Marinara</option>
           <option value="white">White</option>
@@ -145,26 +156,6 @@ function PizzaForm(props: {
           Extra Cheese
         </label>
       </div>
-      <label className="">
-        Substitutions
-        <input
-          name="glutensub"
-          type="checkbox"
-          checked={values.glutensub}
-          onChange={update}
-        />
-      </label>
-      <label className="">
-        Special Instructions
-        <input
-          id="special-text"
-          name="special"
-          type="text"
-          onChange={update}
-          placeholder="Any special requests?"
-          value={values.special}
-        />
-      </label>
       <label className="">
         Name for the Order
         <input

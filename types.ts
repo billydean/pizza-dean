@@ -1,4 +1,4 @@
-interface FormValuesType {
+interface PizzaValues {
   name: string;
   size: string;
   pepperoni: boolean;
@@ -14,4 +14,22 @@ interface FormValuesType {
   sauce: string;
 }
 
-export type { FormValuesType };
+interface Errors {
+  name: string;
+  size: string;
+  sauce: string;
+}
+
+type UpdateFunction = (name: any, value: any) => void;
+type ValidateFunction = (name: any, value: any) => void;
+type OrderFunction = (pizzaWish: PizzaValues) => void;
+type StageFunction = () => void;
+
+export type {
+  PizzaValues,
+  Errors,
+  UpdateFunction,
+  ValidateFunction,
+  OrderFunction,
+  StageFunction,
+};
