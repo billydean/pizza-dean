@@ -5,6 +5,7 @@ import type {
   UpdateFunction,
   StageFunction,
   Errors,
+  PizzaFormProps,
 } from "../../../types";
 import { ChangeEvent } from "react";
 
@@ -13,13 +14,7 @@ import { ChangeEvent } from "react";
 // link back home
 // <Link to=".."></Link>
 
-function PizzaForm(props: {
-  values: PizzaValues;
-  change: UpdateFunction;
-  submit: StageFunction;
-  disabled: boolean;
-  errors: Errors;
-}) {
+function PizzaForm(props: PizzaFormProps) {
   const cost = "TBD haha";
   const navigate = useNavigate();
   const { values, change, submit, disabled, errors } = props;

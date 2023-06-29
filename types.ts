@@ -14,6 +14,14 @@ interface PizzaValues {
   sauce: string;
 }
 
+interface PizzaFormProps {
+  values: PizzaValues;
+  change: UpdateFunction;
+  submit: StageFunction;
+  disabled: boolean;
+  errors: Errors;
+}
+
 interface Errors {
   name: string;
   size: string;
@@ -21,12 +29,13 @@ interface Errors {
 }
 
 type UpdateFunction = (name: any, value: any) => void;
-type ValidateFunction = (name: any, value: any) => void;
+type ValidateFunction = (name: string, value: boolean | string) => void;
 type OrderFunction = (pizzaWish: PizzaValues) => void;
 type StageFunction = () => void;
 
 export type {
   PizzaValues,
+  PizzaFormProps,
   Errors,
   UpdateFunction,
   ValidateFunction,

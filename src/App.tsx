@@ -1,24 +1,88 @@
-import { useState, Dispatch, SetStateAction } from "react";
+import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.scss";
 
 import { Route, Routes, Link } from "react-router-dom";
 
+import * as joi from "joi";
+
 import Menu from "./components/Menu/Menu";
 import Splash from "./components/Splash/Splash";
 import PizzaForm from "./components/PizzaForm/PizzaForm";
+// import pizzaScheme from "./validation/PizzaScheme";
 import Pizza from "./components/Pizza/Pizza";
+import type {
+  Errors,
+  PizzaValues,
+  StageFunction,
+  UpdateFunction,
+  ValidateFunction,
+} from "../types";
+
+const initialValues: PizzaValues = {
+  name: "",
+  size: "",
+  pepperoni: false,
+  mushrooms: false,
+  onions: false,
+  sausage: false,
+  bacon: false,
+  olives: false,
+  bellpeppers: false,
+  pineapple: false,
+  spinach: false,
+  morecheese: false,
+  sauce: "",
+};
+
+const initialErrors: Errors = {
+  name: "",
+  size: "",
+  sauce: "",
+};
+
+const initialDisabled = false;
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [formValues, setFormValues] = useState(initialValues);
+  const [errors, setErrors] = useState(initialErrors);
+  const [disabled, setDisabled] = useState(initialDisabled);
+  const [pizzaWish, setPizzaWish] = useState({});
+  const updateForm: UpdateFunction = (name, value) => {
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
+  };
 
+  const stageOrder: StageFunction = () => {
+    const pizza = Object.create(formValues);
+    pizza.name = formValues.name.trim();
+    console.log(pizza);
+  };
+
+  // Worry about validation once everything wired up and mounting.
+  // const validatePizza: ValidateFunction = (name, value) => {
+  //   joi.assert(value, pizzaScheme[name])
+  // }
   return (
     <>
       <Menu />
       <Routes>
         <Route path="/" element={<Splash />} />
-        <Route path="/form" element={<PizzaForm />} />
+        <Route
+          path="/form"
+          element={
+            <PizzaForm
+              values={formValues}
+              change={updateForm}
+              submit={stageOrder}
+              disabled={disabled}
+              errors={errors}
+            />
+          }
+        />
         <Route path="/pizza" element={<Pizza />} />
       </Routes>
       <div>
@@ -35,9 +99,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+        <button></button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
