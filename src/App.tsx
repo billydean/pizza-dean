@@ -57,8 +57,21 @@ function App() {
   };
 
   const stageOrder: StageFunction = () => {
-    const pizza = Object.create(formValues);
-    pizza.name = formValues.name.trim();
+    const pizza: PizzaValues = {
+      name: formValues.name.trim(),
+      size: formValues.size,
+      pepperoni: formValues.pepperoni,
+      mushrooms: formValues.mushrooms,
+      onions: formValues.onions,
+      sausage: formValues.sausage,
+      bacon: formValues.bacon,
+      olives: formValues.olives,
+      bellpeppers: formValues.bellpeppers,
+      pineapple: formValues.pineapple,
+      spinach: formValues.spinach,
+      morecheese: formValues.morecheese,
+      sauce: formValues.sauce,
+    };
     console.log(pizza);
   };
 

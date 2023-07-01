@@ -7,7 +7,7 @@ import type {
   Errors,
   PizzaFormProps,
 } from "../../../types";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 
 // NOTE for link to pizza product when form done
 // <Link to="../pizza"></Link>
@@ -15,13 +15,27 @@ import { ChangeEvent } from "react";
 // <Link to=".."></Link>
 
 function PizzaForm(props: PizzaFormProps) {
+  const [checkboxes, setCheckboxes] = useState(0);
+
   const cost = "TBD haha";
   const navigate = useNavigate();
   const { values, change, submit, disabled, errors } = props;
   const update = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = event.target;
-    const useValue = type === "checkbox" ? checked : value;
-    change(name, useValue);
+    // const useValue = type === "checkbox" ? checked : value;
+    if (type === "checkbox") {
+      if (!checked) {
+        setCheckboxes(checkboxes - 1);
+        change(name, checked);
+      } else {
+        setCheckboxes(checkboxes + 1);
+        change(name, checked);
+      }
+    } else {
+      change(name, value);
+    }
+    // change(name, useValue);
+    console.log(checkboxes);
   };
   const updateSelect = (event: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = event.target;
@@ -33,6 +47,7 @@ function PizzaForm(props: PizzaFormProps) {
     submit();
     navigate("/pizza");
   };
+
   return (
     <form id="pizza-form" onSubmit={onSubmit}>
       <h2>Build Your Own Pizza</h2>
@@ -41,9 +56,9 @@ function PizzaForm(props: PizzaFormProps) {
         <p>Required</p>
         <select id="size-dropdown" name="size" onChange={updateSelect}>
           <option value="">--Size Options--</option>
-          <option value="11">Medium - 11"</option>
-          <option value="14">Large - 14"</option>
-          <option value="17">XLarge - 17"</option>
+          <option value="teeny">Little</option>
+          <option value="pretty normal">Pretty Normal Size</option>
+          <option value="honkin">Honkin'</option>
         </select>
       </label>
       <label>
@@ -54,18 +69,19 @@ function PizzaForm(props: PizzaFormProps) {
           <option value="marinara">Marinara</option>
           <option value="white">White</option>
           <option value="pesto">Pesto</option>
-          <option value="bbq">BBQ</option>
+          <option value="barbecue">BBQ</option>
         </select>
       </label>
       <div className="toppings">
         Add Toppings
-        <p>Choose up to 10</p>
+        <p>Choose up to 4</p>
         <label>
           <input
             name="pepperoni"
             type="checkbox"
             checked={values.pepperoni}
             onChange={update}
+            disabled={checkboxes > 3 && !values.pepperoni}
           />
           Pepperoni
         </label>
@@ -75,6 +91,7 @@ function PizzaForm(props: PizzaFormProps) {
             type="checkbox"
             checked={values.onions}
             onChange={update}
+            disabled={checkboxes > 3 && !values.onions}
           />
           Onions
         </label>
@@ -84,6 +101,7 @@ function PizzaForm(props: PizzaFormProps) {
             type="checkbox"
             checked={values.mushrooms}
             onChange={update}
+            disabled={checkboxes > 3 && !values.mushrooms}
           />
           Mushrooms
         </label>
@@ -93,6 +111,7 @@ function PizzaForm(props: PizzaFormProps) {
             type="checkbox"
             checked={values.sausage}
             onChange={update}
+            disabled={checkboxes > 3 && !values.sausage}
           />
           Sausage
         </label>
@@ -102,6 +121,7 @@ function PizzaForm(props: PizzaFormProps) {
             type="checkbox"
             checked={values.bacon}
             onChange={update}
+            disabled={checkboxes > 3 && !values.bacon}
           />
           Bacon
         </label>
@@ -111,6 +131,7 @@ function PizzaForm(props: PizzaFormProps) {
             type="checkbox"
             checked={values.olives}
             onChange={update}
+            disabled={checkboxes > 3 && !values.olives}
           />
           Black Olives
         </label>
@@ -120,6 +141,7 @@ function PizzaForm(props: PizzaFormProps) {
             type="checkbox"
             checked={values.bellpeppers}
             onChange={update}
+            disabled={checkboxes > 3 && !values.bellpeppers}
           />
           Green Bell Peppers
         </label>
@@ -129,6 +151,7 @@ function PizzaForm(props: PizzaFormProps) {
             type="checkbox"
             checked={values.pineapple}
             onChange={update}
+            disabled={checkboxes > 3 && !values.pineapple}
           />
           Pineapple
         </label>
@@ -138,6 +161,7 @@ function PizzaForm(props: PizzaFormProps) {
             type="checkbox"
             checked={values.spinach}
             onChange={update}
+            disabled={checkboxes > 3 && !values.spinach}
           />
           Spinach
         </label>
@@ -147,6 +171,7 @@ function PizzaForm(props: PizzaFormProps) {
             type="checkbox"
             checked={values.morecheese}
             onChange={update}
+            disabled={checkboxes > 3 && !values.morecheese}
           />
           Extra Cheese
         </label>
@@ -163,10 +188,6 @@ function PizzaForm(props: PizzaFormProps) {
         />
       </label>
       <div>
-        <label className="">
-          Quantity
-          <input name="quantity" type="number" min="1" onChange={update} />
-        </label>
         <p>Cost: {cost}</p>
         <button id="order-button" disabled={disabled}>
           Add to Order
