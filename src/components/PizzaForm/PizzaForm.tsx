@@ -17,7 +17,6 @@ import { ChangeEvent, useState } from "react";
 function PizzaForm(props: PizzaFormProps) {
   const [checkboxes, setCheckboxes] = useState(0);
 
-  const cost = "TBD haha";
   const navigate = useNavigate();
   const { values, change, submit, disabled, errors } = props;
   const update = (event: ChangeEvent<HTMLInputElement>) => {
@@ -50,32 +49,39 @@ function PizzaForm(props: PizzaFormProps) {
 
   return (
     <form id="pizza-form" onSubmit={onSubmit}>
-      <h2>Build Your Own Pizza</h2>
-      <label className="">
-        Choice of Size
-        <p>Required</p>
-        <select id="size-dropdown" name="size" onChange={updateSelect}>
-          <option value="">--Size Options--</option>
-          <option value="teeny">Little</option>
-          <option value="pretty normal">Pretty Normal Size</option>
-          <option value="honkin">Honkin'</option>
-        </select>
-      </label>
-      <label>
-        Choice of Sauce
-        <p>Required</p>
-        <select name="sauce" value={values.sauce} onChange={updateSelect}>
-          <option value="">--Sauce Options--</option>
-          <option value="marinara">Marinara</option>
-          <option value="white">White</option>
-          <option value="pesto">Pesto</option>
-          <option value="barbecue">BBQ</option>
-        </select>
-      </label>
-      <div className="toppings">
+      <h2 id="form-heading">Build Your Own Pizza</h2>
+      <div id="drop-downs">
+        <div id="A">
+          <label>
+            Choice of Size
+            <p>Required</p>
+            <select name="size" onChange={updateSelect}>
+              <option value="">--Size Options--</option>
+              <option value="teeny">Little</option>
+              <option value="pretty normal">Pretty Normal Size</option>
+              <option value="honkin">Honkin'</option>
+            </select>
+          </label>
+        </div>
+        <div id="B">
+          <label>
+            Choice of Sauce
+            <p>Required</p>
+            <select name="sauce" value={values.sauce} onChange={updateSelect}>
+              <option value="">--Sauce Options--</option>
+              <option value="marinara">Marinara</option>
+              <option value="white">White</option>
+              <option value="pesto">Pesto</option>
+              <option value="barbecue">BBQ</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div id="toppings">
         Add Toppings
         <p>Choose up to 4</p>
-        <label>
+        <label className="topping-check">
           <input
             name="pepperoni"
             type="checkbox"
@@ -85,7 +91,7 @@ function PizzaForm(props: PizzaFormProps) {
           />
           Pepperoni
         </label>
-        <label>
+        <label className="topping-check">
           <input
             name="onions"
             type="checkbox"
@@ -95,7 +101,7 @@ function PizzaForm(props: PizzaFormProps) {
           />
           Onions
         </label>
-        <label>
+        <label className="topping-check">
           <input
             name="mushrooms"
             type="checkbox"
@@ -105,7 +111,7 @@ function PizzaForm(props: PizzaFormProps) {
           />
           Mushrooms
         </label>
-        <label>
+        <label className="topping-check">
           <input
             name="sausage"
             type="checkbox"
@@ -115,7 +121,7 @@ function PizzaForm(props: PizzaFormProps) {
           />
           Sausage
         </label>
-        <label>
+        <label className="topping-check">
           <input
             name="bacon"
             type="checkbox"
@@ -125,7 +131,7 @@ function PizzaForm(props: PizzaFormProps) {
           />
           Bacon
         </label>
-        <label>
+        <label className="topping-check">
           <input
             name="olives"
             type="checkbox"
@@ -135,7 +141,7 @@ function PizzaForm(props: PizzaFormProps) {
           />
           Black Olives
         </label>
-        <label>
+        <label className="topping-check">
           <input
             name="bellpeppers"
             type="checkbox"
@@ -145,7 +151,7 @@ function PizzaForm(props: PizzaFormProps) {
           />
           Green Bell Peppers
         </label>
-        <label>
+        <label className="topping-check">
           <input
             name="pineapple"
             type="checkbox"
@@ -155,7 +161,7 @@ function PizzaForm(props: PizzaFormProps) {
           />
           Pineapple
         </label>
-        <label>
+        <label className="topping-check">
           <input
             name="spinach"
             type="checkbox"
@@ -165,7 +171,7 @@ function PizzaForm(props: PizzaFormProps) {
           />
           Spinach
         </label>
-        <label>
+        <label className="topping-check">
           <input
             name="morecheese"
             type="checkbox"
@@ -176,10 +182,9 @@ function PizzaForm(props: PizzaFormProps) {
           Extra Cheese
         </label>
       </div>
-      <label className="">
+      <label className="name-input">
         Name for the Order
         <input
-          id="name-input"
           name="name"
           type="text"
           onChange={update}
@@ -187,17 +192,15 @@ function PizzaForm(props: PizzaFormProps) {
           value={values.name}
         />
       </label>
-      <div>
-        <p>Cost: {cost}</p>
-        <button id="order-button" disabled={disabled}>
-          Add to Order
-        </button>
+      <div id="order-button">
+        <button disabled={disabled}>Add to Order</button>
       </div>
       <div className="errors">
         <div>{errors.name}</div>
         <div>{errors.size}</div>
         <div>{errors.sauce}</div>
       </div>
+      <div className="preview"></div>
     </form>
   );
 }

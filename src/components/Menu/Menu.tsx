@@ -15,7 +15,7 @@ function Menu() {
           <div className="contact">GitHub</div>
         </div>
       </nav>
-      <h1>Pizza Bone</h1>
+      <h1>Pizza Pit</h1>
     </header>
   );
 }

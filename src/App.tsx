@@ -81,7 +81,7 @@ function App() {
   //   joi.assert(value, pizzaScheme[name])
   // }
   return (
-    <>
+    <div className="biggest-box">
       <Menu />
       <Routes>
         <Route path="/" element={<Splash />} />
@@ -99,7 +99,7 @@ function App() {
         />
         <Route path="/pizza" element={<Pizza />} />
       </Routes>
-    </>
+    </div>
   );
 }
 

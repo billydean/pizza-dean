@@ -1,0 +1,75 @@
+// form {
+//     height: 55vh;
+// }
+// .big-box {
+//     display: flex;
+//     flex-direction: column;
+// }
+
+.errors {
+  background-color: aqua;
+  grid-area: errors;
+}
+.preview {
+  background-color: lightblue;
+  grid-area: preview;
+}
+
+#pizza-form {
+  display: grid;
+  // height: 90%;
+  margin: auto 10%;
+  background-color: lightcoral;
+  grid-template-columns: auto;
+  grid-template-rows: 7vh 17vh 20vh 8vh 6vh 6vh 15vh;
+  grid-template-areas:
+    "heading"
+    "selects"
+    "toppings"
+    "nameput"
+    "button"
+    "errors"
+    "preview";
+  //     grid-template-rows: auto auto auto auto auto;
+  // }
+}
+
+#form-heading {
+  grid-area: heading;
+}
+#drop-downs {
+  grid-area: selects;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+#A {
+  background-color: beige;
+}
+
+#B {
+  background-color: aquamarine;
+}
+
+#toppings {
+  background-color: darkcyan;
+  grid-area: toppings;
+}
+
+#toppings {
+  :nth-child(even) {
+    background-color: beige;
+  }
+  :nth-child(odd) {
+    background-color: goldenrod;
+  }
+}
+
+.name-input {
+  background-color: aquamarine;
+  grid-area: nameput;
+}
+
+#order-button {
+  background-color: hotpink;
+  grid-area: button;
+}
