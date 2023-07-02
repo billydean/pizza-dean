@@ -1,0 +1,23 @@
+header {
+  display: flex;
+  flex-direction: column;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  width: 95vw;
+  :first-child {
+    align-self: center;
+  }
+  .menu-link,
+  .contact {
+    font-size: 1.2rem;
+  }
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  margin: 2rem 0 1rem 0;
+}

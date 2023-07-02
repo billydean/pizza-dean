@@ -4,11 +4,18 @@ import { Link } from "react-router-dom";
 function Menu() {
   return (
     <header>
-      <h1>Pizza Bone</h1>
       <nav>
-        <Link to="/">Home</Link>
-        <>Contact</>
+        <div>
+          <Link to="/" className="menu-link">
+            Home
+          </Link>
+        </div>
+        <div className="contact-surface">
+          <div className="contact">LinkedIn</div>
+          <div className="contact">GitHub</div>
+        </div>
       </nav>
+      <h1>Pizza Bone</h1>
     </header>
   );
 }
