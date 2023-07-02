@@ -51,31 +51,27 @@ function PizzaForm(props: PizzaFormProps) {
     <form id="pizza-form" onSubmit={onSubmit}>
       <h2 id="form-heading">Build Your Own Pizza</h2>
       <div id="drop-downs">
-        <div id="A">
-          <label>
-            Choice of Size
-            <p>Required</p>
-            <select name="size" onChange={updateSelect}>
-              <option value="">--Size Options--</option>
-              <option value="teeny">Little</option>
-              <option value="pretty normal">Pretty Normal Size</option>
-              <option value="honkin">Honkin'</option>
-            </select>
-          </label>
-        </div>
-        <div id="B">
-          <label>
-            Choice of Sauce
-            <p>Required</p>
-            <select name="sauce" value={values.sauce} onChange={updateSelect}>
-              <option value="">--Sauce Options--</option>
-              <option value="marinara">Marinara</option>
-              <option value="white">White</option>
-              <option value="pesto">Pesto</option>
-              <option value="barbecue">BBQ</option>
-            </select>
-          </label>
-        </div>
+        <label className="drop-down">
+          <h3>Choice of Size</h3>
+          <p>Required</p>
+          <select name="size" onChange={updateSelect}>
+            <option value="">--Size Options--</option>
+            <option value="teeny">Little</option>
+            <option value="pretty normal">Pretty Normal Size</option>
+            <option value="honkin">Honkin'</option>
+          </select>
+        </label>
+        <label className="drop-down">
+          <h3>Choice of Sauce</h3>
+          <p>Required</p>
+          <select name="sauce" value={values.sauce} onChange={updateSelect}>
+            <option value="">--Sauce Options--</option>
+            <option value="marinara">Marinara</option>
+            <option value="white">White</option>
+            <option value="pesto">Pesto</option>
+            <option value="barbecue">BBQ</option>
+          </select>
+        </label>
       </div>
 
       <div id="toppings">
